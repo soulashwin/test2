@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful - Rhythm Verse Dance Studio</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Animated Mesh/Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #00d2ff, #3a7bd5);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Ultra-Sleek Glass Card */
+        .container {
+            background: rgba(20, 20, 30, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 50px 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 460px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        /* --- Loading Spinner Styles --- */
+        .loader-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: #00f2fe;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #loading-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        #loading-section p {
+            color: #a0a0b0;
+            font-size: 15px;
+        }
+
+        /* --- Success Section Styles --- */
+        #success-section {
+            display: none; /* Hidden until the loader finishes */
+        }
+
+        /* Animated SVG Checkmark */
+        .checkmark-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .checkmark {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 3;
+            stroke: #00f2fe;
+            stroke-miterlimit: 10;
+            box-shadow: inset 0px 0px 0px #00f2fe;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+            stroke: #00f2fe;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke: #fff;
+            fill: none;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% { stroke-dashoffset: 0; }
+        }
+        @keyframes scale {
+            0%, 100% { transform: none; }
+            50% { transform: scale3d(1.1, 1.1, 1); }
+        }
+        @keyframes fill {
+            100% { box-shadow: inset 0px 0px 0px 35px #00f2fe; }
+        }
+
+        /* Text Styling */
+        h1 { 
+            font-size: 32px; 
+            font-weight: 900; 
+            margin-bottom: 12px; 
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+        
+        p.success-text { 
+            color: #b0b0c0; 
+            font-size: 16px; 
+            line-height: 1.5; 
+            margin-bottom: 35px; 
+        }
+
+        /* Pill-Shaped Primary Button */
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            color: #0f0c29;
+            border: none;
+            border-radius: 50px; /* Pill shape */
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .primary-btn:hover { 
+            box-shadow: 0 12px 25px rgba(0, 242, 254, 0.5);
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+        .primary-btn:active { transform: translateY(1px); }
+
+        /* --- Minimalist Social Section --- */
+        .social-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+        }
+
+        .social-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #808090;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* Ghost outline buttons for social media */
+        .social-btn {
+            flex: 1;
+            display: inline-block;
+            padding: 12px 5px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Specific hover colors for brands */
+        .insta-btn:hover { color: #f09433; border-color: #f09433; }
+        .yt-btn:hover { color: #ff0000; border-color: #ff0000; }
+        .google-btn:hover { color: #4285f4; border-color: #4285f4; }
+
+        @media screen and (max-width: 480px) {
+            .container { padding: 40px 20px; border-radius: 16px; }
+            .social-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="loading-section" class="loader-wrapper">
+            <div class="spinner"></div>
+            <h2>Securing Your Spot...</h2>
+            <p>Confirming with the studio.</p>
+        </div>
+
+        <div id="success-section" aria-live="polite">
+            
+            <div class="checkmark-wrapper">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            
+            <h1 id="greeting-text">Thank You!</h1>
+            
+            <p class="success-text">Your registration is confirmed. Our team will contact you shortly to schedule your demo class.</p>
+            
+            <a href="tel:+917210442253" class="primary-btn">Call Studio Now</a>
+
+            <div class="social-section">
+                <div class="social-title">Follow the Rhythm</div>
+                <div class="social-buttons">
+                    <a href="https://www.instagram.com/rythymversedancestudio/" target="_blank" class="social-btn insta-btn">Instagram</a>
+                    <a href="https://www.youtube.com/yourchannel" target="_blank" class="social-btn yt-btn">YouTube</a>
+                    <a href="https://www.google.com/search?q=Rythym+Verse+Dance+Studio" target="_blank" class="social-btn google-btn">Google</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 1. Grab the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // 2. Check if a 'student_name' was passed. If so, update the <h1> tag!
+        const studentName = urlParams.get('student_name');
+        if (studentName) {
+            // Using textContent is safer than innerHTML to prevent malicious code injection
+            document.getElementById('greeting-text').textContent = `Thank You, ${studentName}!`;
+        }
+
+        // 3. Keep the UI flair: hide loader and show success message after 1.8 seconds
+        setTimeout(() => {
+            document.getElementById('loading-section').style.display = 'none';
+            document.getElementById('success-section').style.display = 'block';
+        }, 1800); 
+    </script>
+    
+</body>
+</html>
